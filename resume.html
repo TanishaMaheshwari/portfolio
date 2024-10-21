@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="image/favicon.png" sizes="16x16">
+  <title>Tanisha | Resume</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" >
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <style>
+    .resume-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 170px;
+      margin-bottom: 80px;
+      padding-bottom: 50px;
+      z-index: 8;
+    }
+    canvas {
+      border: 1px solid rgba(86, 0, 144, 0.5);
+      box-shadow: 0 0 200px rgba(86, 0, 144, 0.5);
+      padding: 40px;
+    }
+    .download-button {
+      position: fixed; 
+      top: 100px; 
+      left: 50%;
+      transform: translateX(-50%); 
+      z-index: 100; 
+      margin-top: 0; 
+      background-color: white;
+      font-size: 1.5em;
+      font-family: 'Dongle', sans-serif;
+      color: rgb(86, 0, 144);
+      border: solid 0.5px rgb(86, 0, 144);
+      z-index: 5;
+}
+    .download-button:hover {
+      background-color: rgba(86, 0, 144, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-container">
+  <div class="navbar">
+  <nav class="navbar navbar-expand-sm navbar-expand-md bg-body-tertiary">
+    <div class="container-fluid" >
+      <a class="navbar-brand" href="index.html">TM.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa fa-bars" style="color: rgb(90, 12, 127);"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="academics.html">Academics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="projects.html">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="resume.html">Resume</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+        </span>
+      </div>
+    </div>
+    </nav>
+  </div>
+  <button class="download-button" onclick="downloadPDF()">Download Resume</button>
+    <div class="row justify-content-center resume-container">
+      <canvas id="pdf-render"></canvas>
+    </div>
+    <footer class="footer">
+  <div class="container-fluid">
+    <div class="footer-content">
+      <h4>Find me on:</h4>
+      <div class="social-icons">
+        <a href="https://github.com/TanishaMaheshwari" style="color: white;" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/tanisha-maheshwari-51784b226" style="color: white;" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/_tanisha_maheshwari_" style="color: white;" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+</div>
+
+  <script type="module" src="/src/main.ts"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>  
+
+  <script>
+    const url = 'image/Resume.pdf';  
+    const canvas = document.getElementById('pdf-render');
+    const ctx = canvas.getContext('2d');
+
+    const renderPDF = async (scale) => {
+      const pdf = await pdfjsLib.getDocument(url).promise;
+      const page = await pdf.getPage(1); 
+      const viewport = page.getViewport({ scale: scale });
+
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+
+      const renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+
+      await page.render(renderContext);
+    };
+
+        // Download PDF function
+    const downloadPDF = () => {
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'Tanisha_Resume.pdf'; // Set the desired file name
+      link.target = '_blank'; // Open in a new tab
+      document.body.appendChild(link); // Required for Firefox
+      link.click();
+      document.body.removeChild(link); // Remove the link after click
+    };
+
+    // Dynamically adjust scale based on screen width
+    const adjustScale = () => {
+      const width = window.innerWidth;
+      const scale = width > 786 ? 1.7 : 0.6;
+      renderPDF(scale);
+    };
+
+    // Initial render
+    adjustScale();
+
+    // Re-render on window resize
+    window.addEventListener('resize', adjustScale);
+  </script>
+  
+</body>
+</html>
