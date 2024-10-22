@@ -41,7 +41,7 @@
 }
 .skill-section {
   margin: 30px 0;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 
 .skill-category h5 {
@@ -67,8 +67,35 @@
   background-color: rgb(65, 8, 91);
   color: white;
 }
+.back-link {
+    text-decoration: underlines; /* Remove underline */
+    color: rgb(30, 4, 30); /* Set text color to match the site's text color */
+    font-family: 'Verdana', sans-serif; /* Set font to match the site's font */
+    position: relative; /* Required for the glow effect */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
 
- 
+.back-link::before {
+    content: ''; /* Create a pseudo-element for the glow effect */
+    position: absolute;
+    top: 0; /* Aligns with the text */
+    left: 0; /* Aligns with the text */
+    width: 100%; /* Full width of the text */
+    height: 100%; /* Full height of the text */
+    background: rgba(255, 255, 255, 1); /* Glow color (white with transparency) */
+    filter: blur(3px); /* Less dense blur for the glow */
+    z-index: -1; /* Place behind the text */
+    transition: opacity 0.3s; /* Smooth transition for glow */
+    opacity: 0; /* Initially hidden */
+}
+
+.back-link:hover {
+    color: rgb(65, 8, 91); /* Change text color on hover to match the site's theme */
+}
+
+.back-link:hover::before {
+    opacity: 0.5; /* Show a less dense glow on hover */
+}
   </style>
 <body>
   <div class="navbar">
@@ -103,7 +130,7 @@
   <div class="container">
     <div class="row" style=" justify-content: center; padding: 10px;">
       <div class="col" style="justify-content: center; padding-top: 30px; padding-bottom: 50px;">
-        <h1 style="font-size: 2.1em; padding-bottom: 20px; margin-top: 100px;">Know Who <strong class="purple">I'M</strong></h1>
+        <h1 style="font-size: 2.1em; padding-bottom: 20px; margin-top: 100px;">Know Who I'M</h1>
         <div class="about-card">
           <p>I'm <strong>Tanisha Maheshwari</strong>, a data analyst and web developer with a passion for technology
              and background in Python, machine learning, and front-end development. <br>
@@ -175,8 +202,14 @@
     <span class="skill-tag">User Experience</span>
     <span class="skill-tag">User Interface</span>
   </div>
-  
   </div>
+        <div class="about-card" style="text-align: center; margin-top: 100px; margin-bottom: 100px;">
+            <p><strong>Developed and Designed by <a class="back-link" href="index.html" >Tanisha</a></strong><br>
+               Inspiration - 
+               <a class="back-link" href="https://soumyajit.vercel.app/" target="_blank" rel="noopener noreferrer">Soumyajit</a>, 
+               <a class="back-link" href="https://github.com/baunov/gradients-bg.git" target="_blank" rel="noopener noreferrer">Baunov</a>
+            </p>
+        </div>
 </div>
   <footer class="footer">
   <div class="container-fluid">
@@ -196,8 +229,12 @@
     </div>
   </div>
 </footer>
-  <script type="module" src="/src/main.ts"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-
+  
+<script type="module" src="/src/main.ts"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 </body>
 </html>
