@@ -19,7 +19,6 @@
   <body>
   
   <div class="text-container">
-
   <nav class="navbar navbar-expand-sm navbar-expand-md bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">TM.</a>
@@ -126,6 +125,20 @@
         deleteSpeed: 20,
       });
     </script>
+
+<script>
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  document.onkeydown = function(e) {
+    // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, and Ctrl+U
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && [73, 74].indexOf(e.keyCode) > -1) || (e.ctrlKey && e.keyCode == 85)) {
+      return false;
+    }
+  };
+</script>
+
 
   </body>
 </html>
