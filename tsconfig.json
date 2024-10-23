@@ -9,7 +9,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": true,
+    "noEmit": false,   // This will emit the compiled JavaScript into dist
+    "outDir": "./dist",  // Output directory for the compiled files
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
