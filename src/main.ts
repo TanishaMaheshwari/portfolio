@@ -1,4 +1,4 @@
-import './style.scss'
+import 'https://github.com/TanishaMaheshwari/Portfolio/blob/main/src/style.scss'
 
 
 
