@@ -80,14 +80,21 @@ body, html {
     }
   }
 
+
   .intro {
     text-align: right;
-    font-size: 4.4em !important;
+    font-size: 4.4em !important; /* Default size for larger screens */
     padding-right: 50px !important;
     padding-top: 200px !important;
     color: rgb(107, 12, 170);
-  }
+}
 
+/* Media query for mobile devices */
+@media (max-width: 768px) { /* You can adjust the max-width as needed */
+    .intro {
+        font-size: 2.5em !important; /* Smaller size for mobile */
+    }
+}
   .name{
     color: rgb(86, 0, 144);
     text-shadow: 2px 2px 5px rgb(255, 255, 255);
