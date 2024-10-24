@@ -5,6 +5,16 @@ body, html {
   display: flex;
   flex-direction: column;
 }
+
+body {
+  background-image: url('image/bg2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This fixes the background in place */
+  overflow-y: scroll; /* This ensures that the certificates can scroll */
+}
+
 .navbar {
   position: fixed;
   font-size: x-large;
@@ -33,7 +43,7 @@ body, html {
 /* Media query for mobile devices */
 @media (max-width: 786px) {
   .navbar {
-    background-color: rgb(90, 12, 127, 0.2) !important; /* Same as footer color */
+    background-color: rgba(223, 169, 242, 0.9) !important; /* Same as footer color */
   }
 }
 
